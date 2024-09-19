@@ -7,10 +7,10 @@ import {
 } from "@mui/material";
 import { GridSizeInterface } from "../interface/GridSizeInterface";
 import { GridInputInterface } from "../interface/GridInputInterface";
-import NorthIcon from "@mui/icons-material/North";
-import EastIcon from "@mui/icons-material/East";
-import WestIcon from "@mui/icons-material/West";
-import SouthIcon from "@mui/icons-material/South";
+import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
+import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
+import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
+import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutlined";
 
 import { useState, useEffect } from "react";
 
@@ -37,13 +37,15 @@ const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
     if (!gridInput) return;
     switch (gridInput.direction.toLowerCase()) {
       case "north":
-        return <NorthIcon />;
+        return <ArrowCircleUpOutlinedIcon />;
       case "east":
-        return <EastIcon />;
+        return <ArrowCircleRightOutlinedIcon />;
       case "west":
-        return <WestIcon />;
+        return <ArrowCircleLeftOutlinedIcon />;
+      case "south":
+        return <ArrowCircleDownOutlinedIcon />;
       default:
-        return <SouthIcon />;
+        return null;
     }
   };
 
@@ -54,8 +56,18 @@ const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
           {gridModel.map((row: any, rowIdx: number) => (
             <TableRow key={rowIdx}>
               {row.map((_col: any, colIdx: number) => (
-                <TableCell key={colIdx} sx={{ border: "1px solid #aaa" }}>
-                  {rowIdx === gridInput.xAxis && colIdx === gridInput.yAxis && selectGridMarker()}
+                <TableCell
+                  key={colIdx}
+                  sx={{
+                    border: "1px solid #aaa",
+                    width: "2rem",
+                    height: "1rem",
+                    textAlign: "center",
+                  }}
+                >
+                  {rowIdx === gridInput.xAxis &&
+                    colIdx === gridInput.yAxis &&
+                    selectGridMarker()}
                 </TableCell>
               ))}
             </TableRow>

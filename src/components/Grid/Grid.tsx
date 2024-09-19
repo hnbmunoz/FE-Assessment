@@ -17,10 +17,10 @@ const Grid = () => {
   }
 
   return (
-    <>
+    <div className="grid">
       <GridInput gridSize={gridSize} configuredGridInput={handleParcedInput} />
       <GridTable gridSize={gridSize} gridInput={parcedInput}/>;
-    </>
+    </div>
   );
 };
 
