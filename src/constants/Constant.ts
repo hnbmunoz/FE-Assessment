@@ -29,7 +29,8 @@ export const SwalButtons = {
 
 export const PROMPT_MSG = {
   outsideRange: 'Please input within range',
-  invalidDirection: 'Please input valid direction'
+  invalidDirection: 'Please input valid direction',
+  invalidFormat: 'Format is invalid'
 }
 
 

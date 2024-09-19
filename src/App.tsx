@@ -1,15 +1,10 @@
 import "./App.css";
-import GridTable from "./components/table/GridTable";
+import Grid from "./components/Grid/Grid";
 
 function App() {
-  return <>
-  <div></div>
-  <GridTable
-    xAxis={0}
-    yAxis={0}
-    direction="NORTH"
-  />;
-  </>
+  return (
+      <Grid />
+  );
 }
 
 export default App;
