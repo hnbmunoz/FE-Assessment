@@ -37,13 +37,13 @@ const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
     if (!gridInput) return;
     switch (gridInput.direction.toLowerCase()) {
       case "north":
-        return <ArrowCircleUpOutlinedIcon />;
+        return <ArrowCircleUpOutlinedIcon color="primary"/>;
       case "east":
-        return <ArrowCircleRightOutlinedIcon />;
+        return <ArrowCircleRightOutlinedIcon color="primary"/>;
       case "west":
-        return <ArrowCircleLeftOutlinedIcon />;
+        return <ArrowCircleLeftOutlinedIcon color="primary"/>;
       case "south":
-        return <ArrowCircleDownOutlinedIcon />;
+        return <ArrowCircleDownOutlinedIcon color="primary"/>;
       default:
         return null;
     }
@@ -59,7 +59,7 @@ const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
                 <TableCell
                   key={colIdx}
                   sx={{
-                    border: "1px solid #aaa",
+                    border: "1px solid #333",
                     width: "2rem",
                     height: "1rem",
                     textAlign: "center",

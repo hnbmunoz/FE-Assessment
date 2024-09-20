@@ -4,7 +4,10 @@ import { GridSizeInterface } from "../components/interface/GridSizeInterface"
 import { GridInputInterface } from "../components/interface/GridInputInterface"
 
 export const GridInputParcer = (gridInput: string, gridSize: GridSizeInterface): GridInputInterface | undefined => {
-  if (!gridInput || gridInput.trim() === '') return
+  if (!gridInput || gridInput.trim() === '') {
+    swal(SwalFailMsg.title, PROMPT_MSG.noInput, SwalFailMsg.icon)
+    return
+  }
   
   // split strings by (,)
   const [xAxis, yAxis, direction] = gridInput.split(',').map(s => s.trim());

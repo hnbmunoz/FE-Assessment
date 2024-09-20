@@ -20,17 +20,11 @@ export const SwalFailMsg = {
   icon: 'error',
 };
 
-export const SwalButtons = {
-  btnYes: 'Yes',
-  btnNo: 'No',
-  btnCancel: 'Cancel',
-  btnConfirm: 'Confirm',
-}
-
 export const PROMPT_MSG = {
   outsideRange: 'Please input within range',
   invalidDirection: 'Please input valid direction',
-  invalidFormat: 'Format is invalid'
+  invalidFormat: 'Format is invalid',
+  noInput: 'No input found'
 }
 
 

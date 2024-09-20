@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { GridInputParcer } from "../../utils/helper";
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
@@ -11,7 +11,13 @@ interface GridInputProps {
 }
 const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
   const [userInput, setUserInput] = useState<string>("");
+  const parameterRef: any = useRef();
 
+  useEffect(() => {
+    parameterRef?.current?.focus()    
+    return () => { }
+  }, [])
+  
   const handleGridInput = (e: any) => {
     setUserInput(e.currentTarget.value);
   };
@@ -19,6 +25,10 @@ const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
   const handleSetParameters = () => {
     const parcedValue = GridInputParcer(userInput, gridSize);
     parcedValue && configuredGridInput(parcedValue);
+  };
+
+  const handleKeyPress = (e: any) => {
+    e.key === "Enter" && handleSetParameters();
   };
 
   return (
@@ -30,6 +40,8 @@ const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
         type="text"
         value={userInput}
         onChange={handleGridInput}
+        onKeyDown={handleKeyPress}
+        ref={parameterRef}
       />
       <Button
         onClick={handleSetParameters}
