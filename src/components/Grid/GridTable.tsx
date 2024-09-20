@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -11,9 +12,6 @@ import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutlined";
-
-import { useState, useEffect } from "react";
-
 interface GridTableProps {
   gridInput: GridInputInterface;
   gridSize: GridSizeInterface;
@@ -23,11 +21,11 @@ const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
   const [gridModel, setGridModel] = useState<any[]>([]);
 
   useEffect(() => {
-    setGridModel(createTableData());
+    setGridModel(createTableModel());
     return () => {};
   }, []);
 
-  const createTableData = () => {
+  const createTableModel = () => {
     return Array.from({ length: gridSize.row }, (_, _rowIndex) =>
       Array.from({ length: gridSize.column }, (_, _colIndex) => ``)
     );
