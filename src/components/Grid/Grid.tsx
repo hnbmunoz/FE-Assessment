@@ -11,7 +11,7 @@ const Grid = () => {
     column: 5,
   };
   
-  const handleParcedInput = (value: any) => {
+  const handleParcedInput = (value: GridInputInterface | undefined) => {
     if (!value) return
     setParcedInput(value)
   }

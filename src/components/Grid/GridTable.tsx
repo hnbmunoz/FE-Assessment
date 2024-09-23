@@ -51,7 +51,7 @@ const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="MUI table">
         <TableBody>
-          {gridModel.map((row: any, rowIdx: number) => (
+          {gridModel.map((row, rowIdx: number) => (
             <TableRow key={rowIdx}>
               {row.map((_col: any, colIdx: number) => (
                 <TableCell

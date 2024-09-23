@@ -11,14 +11,15 @@ interface GridInputProps {
 }
 const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
   const [userInput, setUserInput] = useState<string>("");
-  const parameterRef: any = useRef();
+  const parameterRef = useRef<HTMLInputElement | null>(null);  // The ref can initially be null
+
 
   useEffect(() => {
     parameterRef?.current?.focus()    
     return () => { }
   }, [])
   
-  const handleGridInput = (e: any) => {
+  const handleGridInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.currentTarget.value);
   };
 
@@ -27,7 +28,7 @@ const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
     parcedValue && configuredGridInput(parcedValue);
   };
 
-  const handleKeyPress = (e: any) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.key === "Enter" && handleSetParameters();
   };
 
