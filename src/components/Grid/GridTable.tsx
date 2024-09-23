@@ -18,7 +18,7 @@ interface GridTableProps {
 }
 
 const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
-  const [gridModel, setGridModel] = useState<any[]>([]);
+  const [gridModel, setGridModel] = useState<string[][]>([]);
 
   useEffect(() => {
     setGridModel(createTableModel());
@@ -53,7 +53,7 @@ const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
         <TableBody>
           {gridModel.map((row, rowIdx: number) => (
             <TableRow key={rowIdx}>
-              {row.map((_col: any, colIdx: number) => (
+              {row.map((_col: string, colIdx: number) => (
                 <TableCell
                   key={colIdx}
                   sx={{
