@@ -2,19 +2,19 @@ export const DirectionList = [
   'NORTH', 'EAST', 'SOUTH', 'WEST'
 ]
 
-export const SwalSuccessMsg = {
+export const SuccessMsg = {
   title: 'Success',
   defaultMsg: 'Successful',
   icon: 'success',
 };
 
-export const SwalConfirmMsg = {
+export const ConfirmMsg = {
   title: 'Confirmation',
   defaultMsg: 'Are you sure',
   icon: 'warning'
 };
 
-export const SwalFailMsg = {
+export const FailMsg = {
   title: 'Failed',
   defaultMsg: 'Fail', 
   icon: 'error',

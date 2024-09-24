@@ -4,12 +4,12 @@ import { Button, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { GridSizeInterface } from "../interface/GridSizeInterface";
 import { GridInputInterface } from "../interface/GridInputInterface";
-import swal from "sweetalert";
+import PopupDialog from "../Dialog/PopupDialog";
 import {
-  SwalFailMsg,
-  PROMPT_MSG,
-  DirectionList,
-} from "../../constants/Constant";
+  DialogInterface,
+  DIALOG_DEFAULT_VALUE,
+} from "../interface/DialogInterface";
+import { FailMsg, PROMPT_MSG, DirectionList } from "../../constants/Constant";
 
 interface GridInputProps {
   gridSize: GridSizeInterface;
@@ -17,6 +17,8 @@ interface GridInputProps {
 }
 const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
   const [userInput, setUserInput] = useState<string>("");
+  const [dialogConfig, setDialogConfig] =
+    useState<DialogInterface>(DIALOG_DEFAULT_VALUE);
   const parameterRef = useRef<HTMLInputElement | null>(null); // The ref can initially be null
 
   useEffect(() => {
@@ -30,13 +32,23 @@ const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
 
   const handleSetParameters = () => {
     if (!userInput || userInput.trim() === "") {
-      swal(SwalFailMsg.title, PROMPT_MSG.noInput, SwalFailMsg.icon);
+      setDialogConfig({
+        ...dialogConfig,
+        header: FailMsg.title,
+        body: PROMPT_MSG.noInput,
+        isOpen: true,
+      });
       return;
     }
 
     const [xAxis, yAxis, direction] = GridInputParcer(userInput);
     if (!xAxis || !yAxis || !direction) {
-      swal(SwalFailMsg.title, PROMPT_MSG.invalidFormat, SwalFailMsg.icon);
+      setDialogConfig({
+        ...dialogConfig,
+        header: FailMsg.title,
+        body: PROMPT_MSG.invalidFormat,
+        isOpen: true,
+      });
       return;
     }
 
@@ -47,18 +59,36 @@ const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
           _direction.toLowerCase().trim() === direction.toLowerCase().trim()
       )
     ) {
-      swal(SwalFailMsg.title, PROMPT_MSG.invalidDirection, SwalFailMsg.icon);
+      setDialogConfig({
+        ...dialogConfig,
+        header: FailMsg.title,
+        body: PROMPT_MSG.invalidDirection,
+        isOpen: true,
+      });
+
       return;
     }
 
     // validate the axis (x & y)
     if (!IsNumber(xAxis) || !IsNumber(yAxis)) {
-      swal(SwalFailMsg.title, PROMPT_MSG.invalidFormat, SwalFailMsg.icon);
+      setDialogConfig({
+        ...dialogConfig,
+        header: FailMsg.title,
+        body: PROMPT_MSG.invalidFormat,
+        isOpen: true,
+      });
+
       return;
     }
 
     if (Number(xAxis) >= gridSize.row || Number(yAxis) >= gridSize.column) {
-      swal(SwalFailMsg.title, PROMPT_MSG.outsideRange, SwalFailMsg.icon);
+      setDialogConfig({
+        ...dialogConfig,
+        header: FailMsg.title,
+        body: PROMPT_MSG.outsideRange,
+        isOpen: true,
+      });
+
       return;
     }
     configuredGridInput({
@@ -70,6 +100,10 @@ const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.key === "Enter" && handleSetParameters();
+  };
+
+  const handleToggleDialog = () => {
+    setDialogConfig({ ...dialogConfig, isOpen: !dialogConfig?.isOpen });
   };
 
   return (
@@ -91,6 +125,12 @@ const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
       >
         Set Parameters
       </Button>
+      <PopupDialog
+        header={dialogConfig.header}
+        body={dialogConfig.body}
+        handleToggle={handleToggleDialog}
+        isOpen={dialogConfig.isOpen}
+      />
     </div>
   );
 };
