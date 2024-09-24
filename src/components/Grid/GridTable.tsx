@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
-  TableCell,
   TableContainer,
-  TableRow,
+  Grid2
 } from "@mui/material";
 import { GridSizeInterface } from "../interface/GridSizeInterface";
 import { GridInputInterface } from "../interface/GridInputInterface";
@@ -35,13 +34,13 @@ const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
     if (!gridInput) return;
     switch (gridInput.direction.toLowerCase()) {
       case "north":
-        return <ArrowCircleUpOutlinedIcon color="primary"/>;
+        return <ArrowCircleUpOutlinedIcon color="primary" />;
       case "east":
-        return <ArrowCircleRightOutlinedIcon color="primary"/>;
+        return <ArrowCircleRightOutlinedIcon color="primary" />;
       case "west":
-        return <ArrowCircleLeftOutlinedIcon color="primary"/>;
+        return <ArrowCircleLeftOutlinedIcon color="primary" />;
       case "south":
-        return <ArrowCircleDownOutlinedIcon color="primary"/>;
+        return <ArrowCircleDownOutlinedIcon color="primary" />;
       default:
         return null;
     }
@@ -52,23 +51,15 @@ const GridTable = ({ gridInput, gridSize }: GridTableProps) => {
       <Table sx={{ minWidth: 650 }} aria-label="MUI table">
         <TableBody>
           {gridModel.map((row, rowIdx: number) => (
-            <TableRow key={rowIdx}>
+            <Grid2 key={rowIdx} container>
               {row.map((_col: string, colIdx: number) => (
-                <TableCell
-                  key={colIdx}
-                  sx={{
-                    border: "1px solid #333",
-                    width: "2rem",
-                    height: "1rem",
-                    textAlign: "center",
-                  }}
-                >
+                <div className="grid--tiles" key={colIdx}>
                   {rowIdx === gridInput.xAxis &&
                     colIdx === gridInput.yAxis &&
                     selectGridMarker()}
-                </TableCell>
+                </div>
               ))}
-            </TableRow>
+            </Grid2>
           ))}
         </TableBody>
       </Table>

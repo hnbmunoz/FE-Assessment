@@ -5,4 +5,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  &--tiles {
+    background-color:#1A2027;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin: 1rem ;
+    width: 2rem;
+    height: 1rem;
+    text-align: center;
+  }
 }
