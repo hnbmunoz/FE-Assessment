@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { GridInputParcer } from "../../utils/helper";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { GridSizeInterface } from "../interface/GridSizeInterface";
 import { GridInputInterface } from "../interface/GridInputInterface";
@@ -11,14 +11,13 @@ interface GridInputProps {
 }
 const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
   const [userInput, setUserInput] = useState<string>("");
-  const parameterRef = useRef<HTMLInputElement | null>(null);  // The ref can initially be null
-
+  const parameterRef = useRef<HTMLInputElement | null>(null); // The ref can initially be null
 
   useEffect(() => {
-    parameterRef?.current?.focus()    
-    return () => { }
-  }, [])
-  
+    parameterRef?.current?.focus();
+    return () => {};
+  }, []);
+
   const handleGridInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.currentTarget.value);
   };
@@ -34,16 +33,16 @@ const GridInput = ({ gridSize, configuredGridInput }: GridInputProps) => {
 
   return (
     <div className="grid-input">
-      <label htmlFor="grid-input">Enter Object Placement and Direction: </label>
-      <input
-        id="grid-input"
-        className="grid-input--text-box"
-        type="text"
-        value={userInput}
-        onChange={handleGridInput}
-        onKeyDown={handleKeyPress}
-        ref={parameterRef}
-      />
+        <TextField
+          required
+          id="mui-grid-input"
+          label="Enter Object Placement and Direction:"
+          value={userInput}
+          onChange={handleGridInput}
+          onKeyDown={handleKeyPress}
+          inputRef={parameterRef}
+          className="grid-input--text-box"
+        />
       <Button
         onClick={handleSetParameters}
         variant="contained"

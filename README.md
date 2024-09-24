@@ -1,4 +1,19 @@
 # FE-Assessment
+  This is an initial FE Assessment for Fiable via this link https://fiable.atlassian.net/wiki/external/NzM2YWM4MzI3MGM4NDZlZThjYzc3NWE4NDU4MGEzZTA
+
+## For Developers 
+  1. After getting the repo run npm install to install dependencies
+  2. Run npm storybook to run storybook to test the components
+  3. Run npm run dev to run the application
+
+## How to use
+  1. Type on the indicated text box the necessary paramaters using this syntax ( x-axis, y-axis, direction)
+  2. x/y - axis could only be numbers
+  3. Direction only accepts One of the four cardinal directions (NORTH, EAST, SOUTH, WEST).
+  4. Once button set parameters is clicked an arrow object will appear on the grid
+  5. The location of the arrow should be based on the x/y axis of user input and the arrow should be pointed based on direction of user input 
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
